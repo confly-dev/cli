@@ -1,0 +1,20 @@
+{
+  "name": "confly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/confly-dev/cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/confly-dev/cli/issues"
+  },
+  "homepage": "https://github.com/confly-dev/cli#readme"
+}
