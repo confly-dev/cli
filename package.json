@@ -1,6 +1,6 @@
 {
-  "name": "confly",
-  "version": "1.0.0",
+  "name": "@confly-dev/confly",
+  "version": "1.0.1",
   "description": "CLI for confly.dev",
   "type": "module",
   "bin": {
@@ -15,7 +15,9 @@
   },
   "keywords": [
     "CLI",
-    "confly"
+    "confly",
+    "confly.dev",
+    "configuration"
   ],
   "author": "Robin Dorst",
   "license": "MIT",
