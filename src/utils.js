@@ -1,19 +1,13 @@
 import path from "path";
 import fs from "fs";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export function getCachePath() {
-	return path.join(
-		require.main.filename || process.mainModule.filename,
-		".confly.cache"
-	);
+  return path.join(process.cwd(), ".confly.cache");
 }
 
 export function getEndpoint() {
-	return fs.existsSync(path.join(__dirname, "../.prod"))
-		? "http://localhost:3000/"
-		: "https://confly.dev/";
+  console.log(path.join(process.cwd(), "/.dev"));
+  return fs.existsSync(path.join(process.cwd(), "/.dev"))
+    ? "http://localhost:3000/"
+    : "https://confly.dev/";
 }

@@ -209,7 +209,7 @@ confly version  - show the version of confly
 
         if (res.status == 200) {
           settings.set("token", res.token.token);
-          console.log(chalk.green.bold("Logged in successfully"));
+          console.log(chalk.green.bold("Logged in"));
         } else console.log(chalk.redBright(`${res.status}: ${res.message}`));
       });
   } else if (args[0].toLowerCase() == "logout") {

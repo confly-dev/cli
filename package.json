@@ -2,8 +2,10 @@
   "name": "confly",
   "version": "1.0.0",
   "description": "CLI for confly.dev",
-  "main": "src/index.js",
   "type": "module",
+  "bin": {
+    "confly": "src/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
