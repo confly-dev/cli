@@ -75,7 +75,7 @@ confly version  - show the version of confly
             .then(async (answers) => {
               const form = new FormData();
               form.set("name", answers.projectName);
-              const res = await fetch(`${getEndpoint()}api/projects`, {
+              const res = await fetch(`${getEndpoint()}api/v1/projects`, {
                 method: "POST",
                 headers: {
                   authorization: `Bearer ${settings.get("token")}`,
@@ -105,7 +105,9 @@ confly version  - show the version of confly
             ])
             .then(async (answers) => {
               const res = await fetch(
-                `${getEndpoint()}api/projects?projectId=${answers.projectId}`,
+                `${getEndpoint()}api/v1/projects?projectId=${
+                  answers.projectId
+                }`,
                 {
                   method: "GET",
                   headers: {
@@ -137,7 +139,7 @@ confly version  - show the version of confly
     const { structure } = JSON.parse(fs.readFileSync(configPath));
 
     const res = await fetch(
-      `${endPoint}api/projects/${settings.get("project")}/structure`,
+      `${endPoint}api/v1/projects/${settings.get("project")}/structure`,
       {
         method: "POST",
         body: JSON.stringify(structure),
@@ -164,7 +166,7 @@ confly version  - show the version of confly
     }
 
     const res = await fetch(
-      `${endPoint}api/projects/${settings.get("project")}/structure`,
+      `${endPoint}api/v1/projects/${settings.get("project")}/structure`,
       {
         method: "GET",
         headers: {
@@ -202,7 +204,7 @@ confly version  - show the version of confly
         form.set("identifier", answers.identifier);
         form.set("password", answers.password);
 
-        const res = await fetch(`${endPoint}api/auth`, {
+        const res = await fetch(`${endPoint}api/v1/auth`, {
           method: "POST",
           body: form,
         }).then((res) => res.json());
