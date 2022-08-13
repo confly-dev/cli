@@ -1,6 +1,6 @@
 {
   "name": "@confly-dev/confly",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI for confly.dev",
   "type": "module",
   "bin": {
