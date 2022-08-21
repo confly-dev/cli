@@ -136,7 +136,7 @@ confly version  - show the version of confly
       process.exit(0);
     }
 
-    const { structure } = JSON.parse(fs.readFileSync(configPath));
+    const structure = JSON.parse(fs.readFileSync(configPath));
 
     const res = await fetch(
       `${endPoint}api/v1/projects/${settings.get("project")}/structure`,
