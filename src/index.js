@@ -209,9 +209,15 @@ confly version  - show the version of confly
           body: form,
         }).then((res) => res.json());
 
-        if (res.status == 200) {
-          settings.set("token", res.token.token);
-          console.log(chalk.green.bold("Logged in"));
+        console.log(res);
+
+        if (res.token) {
+          settings.set("token", res.token);
+          console.log(
+            chalk.green.bold(
+              `Logged in as ${res.user.username} (${res.user.email})`
+            )
+          );
         } else console.log(chalk.redBright(`${res.status}: ${res.message}`));
       });
   } else if (args[0].toLowerCase() == "logout") {
