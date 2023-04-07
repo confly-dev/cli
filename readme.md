@@ -10,7 +10,8 @@ View this page in our [Wiki](docs.confly.dev/cli).
 ## Installation
 
 Use ` $ npm i -g @confly-dev/confly` to install the CLI globally.
-Now you can call ` $ confly <command>` from anywhere you want and omit the `npx` from all the following commands.
+Now you can call ` $ confly <command>` from anywhere you want.
+OR you can use the CLI without any installation and just use `npx @confly-dev/confly <command>`.
 
 ## Commands
 
