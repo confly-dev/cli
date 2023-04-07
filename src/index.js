@@ -43,7 +43,7 @@ const settings = userSettings.file(".confly");
   confly pull     - update local structure from server
   confly login    - login with username and password
   confly logout   - forget token created by login
-  confly version  - show the version of confly
+  confly status  - show the status of confly (token, project)
   `);
       break;
     case "init":
