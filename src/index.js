@@ -16,6 +16,7 @@ import {
   getProjectId,
   getStructure,
   setStructure,
+  getExistingProject,
 } from "./utils.js";
 
 const settings = userSettings.file(".confly");
@@ -50,6 +51,11 @@ const settings = userSettings.file(".confly");
       break;
     case "init":
       checkToken(settings);
+
+      if (args.length > 1) {
+        getExistingProject(args[1], settings);
+        break;
+      }
 
       inquirer
         .prompt([
@@ -91,16 +97,7 @@ const settings = userSettings.file(".confly");
                 },
               ])
               .then(async (answers) => {
-                const project = await apiCall(
-                  `projects/${answers.projectId}`,
-                  "GET",
-                  null,
-                  settings
-                );
-                createConfig(configPath, project.id);
-                console.log(
-                  chalk.green.bold("Confirmed existing confly project")
-                );
+                getExistingProject(answers.projectId, settings);
               });
           }
         });
