@@ -32,18 +32,29 @@ export function getEndpoint() {
     : "https://confly.dev/api/v1/";
 }
 
-export function createConfig(configPath) {
+export function createConfig(configPath, projectId) {
   const gitignorePath = path.join(process.cwd(), ".gitignore");
   if (!fs.existsSync(configPath)) {
     fs.writeFileSync(
       configPath,
       JSON.stringify({
+        projectId: projectId,
         structure: {
-          categories: [],
+          category1: {
+            section1: {
+              input1: {
+                type: "string",
+              },
+              input2: {
+                type: "boolean",
+                display: "switch",
+              },
+            },
+          },
         },
       })
     );
-  }
+  } else setProjectId(projectId);
 
   const gitignoreAppendix = "\n# confly.dev cache\n.confly.cache";
 
@@ -78,4 +89,25 @@ export function checkProject(settings) {
     );
     process.exit(0);
   }
+}
+
+export function getProjectId() {
+  const config = JSON.parse(fs.readFileSync(configPath));
+  return config.projectId;
+}
+
+export function setProjectId(projectId) {
+  const config = JSON.parse(fs.readFileSync(configPath));
+  config.projectId = projectId;
+  fs.writeFileSync(configPath, JSON.stringify(config));
+}
+
+export function getStructure() {
+  return JSON.parse(fs.readFileSync(configPath)).structure;
+}
+
+export function setStructure(structure) {
+  const config = JSON.parse(fs.readFileSync(configPath));
+  config.structure = structure;
+  fs.writeFileSync(configPath, JSON.stringify(config));
 }

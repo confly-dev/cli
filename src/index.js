@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import fs from "fs";
-import path from "path";
 import chalk from "chalk";
 import inquirer from "inquirer";
 import fetch from "node-fetch";
@@ -14,6 +13,9 @@ import {
   checkToken,
   configPath,
   checkProject,
+  getProjectId,
+  getStructure,
+  setStructure,
 } from "./utils.js";
 
 const settings = userSettings.file(".confly");
@@ -76,9 +78,9 @@ const settings = userSettings.file(".confly");
                   form,
                   settings
                 );
-                settings.set("project", project.id);
+
+                createConfig(configPath, project.id);
                 console.log(chalk.green.bold("Created new confly project"));
-                createConfig(configPath);
               });
           } else {
             inquirer
@@ -95,11 +97,10 @@ const settings = userSettings.file(".confly");
                   null,
                   settings
                 );
-                settings.set("project", project.id);
+                createConfig(configPath, project.id);
                 console.log(
                   chalk.green.bold("Confirmed existing confly project")
                 );
-                createConfig(configPath);
               });
           }
         });
@@ -108,11 +109,10 @@ const settings = userSettings.file(".confly");
       checkToken(settings);
       checkProject(settings);
 
-      const structure = JSON.parse(fs.readFileSync(configPath));
       await apiCall(
-        `projects/${settings.get("project")}/structure`,
+        `projects/${getProjectId()}/structure`,
         "POST",
-        JSON.stringify(structure),
+        JSON.stringify(getStructure()),
         settings,
         { "Content-Type": "application/json" }
       );
@@ -123,12 +123,12 @@ const settings = userSettings.file(".confly");
       checkProject(settings);
 
       const res = await apiCall(
-        `projects/${settings.get("project")}/structure`,
+        `projects/${getProjectId()}/structure`,
         "GET",
         null,
         settings
       );
-      fs.writeFileSync(configPath, JSON.stringify({ structure: res }));
+      setStructure(res);
       console.log(chalk.green.bold("Structure pulled from server"));
       break;
     case "login":
@@ -176,7 +176,7 @@ const settings = userSettings.file(".confly");
         "Confly v" + chalk.green(json.version) + " using " + getEndpoint()
       );
       console.log("Token: " + chalk.green(settings.get("token")));
-      console.log("Project: " + chalk.green(settings.get("project")));
+      console.log("Project: " + chalk.green(getProjectId()));
       break;
 
     default:
