@@ -111,3 +111,9 @@ export function setStructure(structure) {
   config.structure = structure;
   fs.writeFileSync(configPath, JSON.stringify(config));
 }
+
+export async function getExistingProject(projectId, settings) {
+  const project = await apiCall(`projects/${projectId}`, "GET", null, settings);
+  createConfig(configPath, project.id);
+  console.log(chalk.green.bold("Confirmed existing confly project"));
+}
