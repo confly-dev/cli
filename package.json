@@ -1,13 +1,12 @@
 {
   "name": "@confly-dev/confly",
-  "version": "1.1.0",
+  "version": "2.0.0-pre",
   "description": "CLI for confly.dev",
-  "type": "module",
   "bin": {
-    "confly": "src/index.js"
+    "confly": "dist/cli.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -17,21 +16,26 @@
     "CLI",
     "confly",
     "confly.dev",
-    "configuration"
+    "configuration",
+    "remote config",
+    "config as a service"
   ],
-  "author": "Robin Dorst",
+  "author": "The Confly Team",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/confly-dev/cli/issues"
   },
   "homepage": "https://github.com/confly-dev/cli#readme",
   "dependencies": {
-    "chalk": "^5.0.1",
-    "formdata-node": "^4.3.3",
-    "fs": "^0.0.1-security",
-    "inquirer": "^9.0.2",
-    "node-fetch": "^3.2.10",
-    "path": "^0.12.7",
-    "user-settings": "^0.2.0"
+    "@inquirer/prompts": "^2.1.1",
+    "axios": "^1.4.0",
+    "chalk": "^4.1.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/configstore": "^6.0.0",
+    "@types/node": "^20.3.0",
+    "@types/yargs": "^17.0.24",
+    "typescript": "^5.1.3"
   }
 }
